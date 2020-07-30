@@ -8,7 +8,9 @@ $(document).ready(function() {
   const data = async () => new Promise(resolve => {
     setTimeout(() => resolve(window.apiResponse), 1000)
   });
-console.log(window.apiResponse)
+
+  console.log(window.apiResponse)
+
 
 
 
@@ -24,11 +26,14 @@ console.log(window.apiResponse)
     const response = await data()
     console.log(`${response.releases.length} Releases`)
     getElements(response);
-      // $("#card").html(`<h3>${response.releases.length} </h3>`);
+      
   })();
   function getElements(response) {
     if (response) {
-      $("#cards").html(`<h3>${response.releases[0].artist}</h3>`);
+      for (let i =0; i <= response.releases.length; i++) {
+      $("#card").append(`<li>${response.releases[i].artist}
+      ${response.releases[i].year}</li>`);
+      }
     } else if (response === false) {
       $("#cards").html(`<h3> Release cannot be found. </h3>`
       );
